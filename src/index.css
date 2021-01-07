@@ -1,13 +1,126 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+hmtl {
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body,
+#root {
+  height: 100vh;
+  margin: 0;
+  font-size: 16px;
+  line-height: 19px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    "header"
+    "main";
+  grid-template-rows: 90px 1fr;
+  grid-template-columns: 1fr;
+  height: 100%;
+}
+
+header {
+  grid-area: header;
+  background-color: #3498db;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px 0 50px;
+}
+
+main {
+  grid-area: main;
+  background-color: #fff;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.filters {
+  flex: 1;
+}
+
+.products-sec {
+  flex: 2 30%;
+}
+
+/*products*/
+.our-products {
+  margin: 20px 0;
+  font-size: 36px;
+  line-height: 42px;
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  border-left: 2px solid #c6c2c2;
+}
+
+.products li {
+  width: 265px;
+  height: 280px;
+  margin: 25px 10px;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.product img {
+  width: 89px;
+  height: 119px;
+}
+
+.product-info {
+  align-self: baseline;
+}
+
+.product-price {
+  font-size: 18px;
+  line-height: 21px;
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button {
+  width: 100%;
+  height: 32px;
+  margin: 5px 0;
+  color: #fff;
+  border-style: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  border: 1px #000 solid;
+}
+
+.button.green {
+  background-color: #2ecc71;
+}
+
+.button.blue {
+  background-color: #2980b9;
 }
