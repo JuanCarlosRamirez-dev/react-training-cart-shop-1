@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './assets/globant-shops.svg'
 import Products from './components/Products';
 import products from './api/mock-products';
+import Filter from './components/Filter';
 
 class App extends Component {
   constructor() {
@@ -21,7 +22,7 @@ class App extends Component {
         <main>
           <div className="content">
             <div className="filters">
-              FILTERS
+              <Filter count={this.state.products.length} />
             </div>
             <div className="products-sec">
               <div className="our-products">Our Products:</div>

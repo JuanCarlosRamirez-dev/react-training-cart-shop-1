@@ -42,15 +42,11 @@ main {
   flex-wrap: wrap;
 }
 
-.filters {
-  flex: 1;
-}
-
-.products-sec {
-  flex: 2 30%;
-}
-
 /*products*/
+.products-sec {
+  flex: 3 30%;
+}
+
 .our-products {
   margin: 20px 0;
   font-size: 36px;
@@ -69,9 +65,9 @@ main {
 }
 
 .products li {
-  width: 265px;
-  height: 280px;
-  margin: 25px 10px;
+  width: 337px;
+  height: 370px;
+  margin: 25px 35px;
 }
 
 .product {
@@ -123,4 +119,19 @@ main {
 
 .button.blue {
   background-color: #2980b9;
+}
+/*----------------------------*/
+
+/*Filter*/
+.filters {
+  flex: 1;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15%;
+  height: 100%;
+  text-align: left;
 }
