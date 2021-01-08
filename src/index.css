@@ -42,6 +42,10 @@ main {
   flex-wrap: wrap;
 }
 
+.hide {
+  display: none;
+}
+
 /*products*/
 .products-sec {
   flex: 3 30%;
@@ -78,9 +82,21 @@ main {
   height: 100%;
 }
 
+.basics {
+  align-self: baseline;
+  font-size: 12px;
+  line-height: 14px;
+  width: 59px;
+  height: 15px;
+  color: #fff;
+  text-align: center;
+  background: #11d000;
+  margin: 0;
+}
+
 .product img {
-  width: 89px;
-  height: 119px;
+  width: 110px;
+  height: 175px;
 }
 
 .product-info {
