@@ -10,6 +10,7 @@ export default class Products extends Component {
                     {this.props.products.map(product => (
                         <li key={product._id}>
                             <div className="product">
+                                <p className={product.basics ? 'basics' : 'hide'}> BASICS</p>
                                 <img src={/* product.image */"./coffe.jpg"} alt={product.name} />
                                 <div className="product-info">
                                     <p>
