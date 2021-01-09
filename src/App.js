@@ -3,15 +3,38 @@ import logo from './assets/globant-shops.svg'
 import Products from './components/Products';
 import products from './api/mock-products';
 import Filters from './components/Filter';
+import Cart from './components/Cart';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       products: products,
+      cartItems: [],
       sort: "",
       basics: ""
     }
+  }
+
+  removeFromCart = (product) => {
+    const cartItems = this.state.cartItems.slice();
+    this.setState({ cartItems: cartItems.filter(x => x.id !== product.id) })
+  }
+
+  addToCart = (product) => {
+    const cartItems = this.state.cartItems.slice();
+    let alreadyInCart = false;
+    cartItems.forEach(item => {
+      if (item.id === product.id) {
+        item.count += 1;
+        alreadyInCart = true;
+      }
+    });
+    if (!alreadyInCart) {
+      cartItems.push({ ...product, count: 1 })
+    }
+    this.setState({ cartItems });
+    console.log(product)
   }
 
   sortProducts = (e) => {
@@ -49,7 +72,9 @@ class App extends Component {
       <div className="grid-container">
         <header>
           <img src={logo} alt="Globant shops" />
-          <a href="/">React Shopping cart</a>
+          <Cart
+            cartItems={this.state.cartItems}
+            removeFromCart={this.removeFromCart} />
         </header>
         <main>
           <div className="content">
@@ -63,7 +88,9 @@ class App extends Component {
             </div>
             <div className="products-sec">
               <div className="our-products">Our Products:</div>
-              <Products products={this.state.products} />
+              <Products
+                products={this.state.products}
+                addToCart={this.addToCart} />
             </div>
 
           </div>
