@@ -16,6 +16,11 @@ class App extends Component {
     }
   }
 
+  removeFromCart = (product) => {
+    const cartItems = this.state.cartItems.slice();
+    this.setState({ cartItems: cartItems.filter(x => x.id !== product.id) })
+  }
+
   addToCart = (product) => {
     const cartItems = this.state.cartItems.slice();
     let alreadyInCart = false;
@@ -67,7 +72,9 @@ class App extends Component {
       <div className="grid-container">
         <header>
           <img src={logo} alt="Globant shops" />
-          <Cart cartItems={this.state.cartItems} />
+          <Cart
+            cartItems={this.state.cartItems}
+            removeFromCart={this.removeFromCart} />
         </header>
         <main>
           <div className="content">

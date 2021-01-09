@@ -42,6 +42,10 @@ main {
   flex-wrap: wrap;
 }
 
+.display {
+  display: block;
+}
+
 .hide {
   display: none;
 }
@@ -203,7 +207,56 @@ main {
 .sidebar-content {
   width: 493px;
   height: 100vh;
+  padding: 0 25px;
+
   background-color: #fff;
   flex-grow: 1;
   text-align: left;
+}
+
+.cart-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-header p {
+  font-size: 24px;
+  line-height: 28px;
+}
+
+.close-btn {
+  width: 30px;
+  height: 30px;
+}
+
+.recycle-btn {
+  width: 25px;
+  height: 25px;
+}
+
+.cart-list {
+  padding: 0;
+  margin: 0;
+}
+
+.cart-items {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px 0;
+}
+
+.cart-items img {
+  width: 70px;
+  height: 70px;
+}
+
+.subtotal {
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 23px;
 }
