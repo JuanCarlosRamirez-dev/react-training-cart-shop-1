@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { removeFromCart } from '../actions/cartActions';
 import cartImg from '../assets/cart.svg';
 import closeBtn from '../assets/close.png';
 import recycleBin from '../assets/recycle-bin.png';
 
-export default class Cart extends Component {
+class Cart extends Component {
     constructor() {
         super();
         this.state = {
@@ -77,3 +79,9 @@ export default class Cart extends Component {
         )
     }
 }
+
+export default connect(state => ({
+    cartItems: state.cart.cartItems,
+}),
+    removeFromCart
+)(Cart);
