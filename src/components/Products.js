@@ -1,33 +1,48 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { fetchProducts } from '../actions/productActions';
 
-export default class Products extends Component {
+class Products extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            product: null
+        }
+    }
 
+    componentDidMount() {
+        this.props.fetchProducts()
+    }
 
     render() {
         return (
             <div>
-                <ul className="products">
-                    {this.props.products.map(product => (
-                        <li key={product._id}>
-                            <div className="product">
-                                <p className={product.basics ? 'basics' : 'hide'}> BASICS</p>
-                                <img src={/* product.image */"./coffe.jpg"} alt={product.name} />
-                                <div className="product-info">
-                                    <p>
-                                        {product.name}
-                                    </p>
-                                    <p>Stars and comments</p>
-                                    <div className="product-price">{"$" + product.price}</div>
+                { !this.props.products ? <div>Loading...</div> :
+                    <ul className="products">
+                        {this.props.products.map(product => (
+                            <li key={product._id}>
+                                <div className="product">
+                                    <p className={product.basics ? 'basics' : 'hide'}> BASICS</p>
+                                    <img src={product.img} alt={product.name} />
+                                    <div className="product-info">
+                                        <p>
+                                            {product.name}
+                                        </p>
+                                        <p>Stars and comments</p>
+                                        <div className="product-price">{"$" + product.price}</div>
+                                    </div>
+                                    <div className="buttons">
+                                        <button className="button blue">See details</button>
+                                        <button onClick={() => this.props.addToCart(product)} className="button green">Add to cart</button>
+                                    </div>
                                 </div>
-                                <div className="buttons">
-                                    <button className="button blue">See details</button>
-                                    <button onClick={() => this.props.addToCart(product)} className="button green">Add to cart</button>
-                                </div>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
+                            </li>
+                        ))}
+                    </ul>
+                }
             </div>
         )
     }
 }
+
+export default connect((state) => ({ products: state.products.items }), { fetchProducts })(Products);

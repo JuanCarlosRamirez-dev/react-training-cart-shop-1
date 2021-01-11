@@ -5,6 +5,8 @@ import products from './api/mock-products';
 import Filters from './components/Filter';
 import Cart from './components/Cart';
 import Payment from './components/Payment';
+import store from './store';
+import { Provider } from 'react-redux';
 
 class App extends Component {
   constructor() {
@@ -85,42 +87,44 @@ class App extends Component {
 
   render() {
     return (
-      <div className="grid-container">
-        <header>
-          <img src={logo} alt="Globant shops" />
-          <Cart
-            cartItems={this.state.cartItems}
-            removeFromCart={this.removeFromCart}
-            toggleCheckoutForm={this.toggleCheckoutForm} />
-        </header>
-        <main>
+      <Provider store={store}>
+        <div className="grid-container">
+          <header>
+            <img src={logo} alt="Globant shops" />
+            <Cart
+              cartItems={this.state.cartItems}
+              removeFromCart={this.removeFromCart}
+              toggleCheckoutForm={this.toggleCheckoutForm} />
+          </header>
+          <main>
 
-          <div className={!this.state.displayForm ? 'display' : 'hide'}>
-            <div className="content">
-              <div className="filters">
-                <Filters
-                  basics={this.state.basics}
-                  sort={this.state.sort}
-                  filterProducts={this.filterProducts}
-                  sortProducts={this.sortProducts}
-                />
-              </div>
-              <div className="products-sec">
-                <div className="our-products">Our Products:</div>
-                <Products
-                  products={this.state.products}
-                  addToCart={this.addToCart} />
+            <div className={!this.state.displayForm ? 'display' : 'hide'}>
+              <div className="content">
+                <div className="filters">
+                  <Filters
+                    basics={this.state.basics}
+                    sort={this.state.sort}
+                    filterProducts={this.filterProducts}
+                    sortProducts={this.sortProducts}
+                  />
+                </div>
+                <div className="products-sec">
+                  <div className="our-products">Our Products:</div>
+                  <Products
+                    products={this.state.products}
+                    addToCart={this.addToCart} />
+                </div>
               </div>
             </div>
-          </div>
-          <div className={this.state.displayForm ? 'display' : 'hide'}>
-            <Payment
-              createOrder={this.createOrder}
-              cartItems={this.state.cartItems}
-              removeFromCart={this.removeFromCart} />
-          </div>
-        </main>
-      </div>
+            <div className={this.state.displayForm ? 'display' : 'hide'}>
+              <Payment
+                createOrder={this.createOrder}
+                cartItems={this.state.cartItems}
+                removeFromCart={this.removeFromCart} />
+            </div>
+          </main>
+        </div>
+      </Provider>
     );
   }
 }
