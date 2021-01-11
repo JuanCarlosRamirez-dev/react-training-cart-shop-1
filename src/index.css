@@ -260,3 +260,54 @@ main {
   font-size: 20px;
   line-height: 23px;
 }
+
+/*-------------------*/
+
+/*Payent Form*/
+
+.payment-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.shipping {
+  width: 40%;
+}
+
+.shipping p {
+  padding-left: 4%;
+}
+
+.shipping ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+}
+
+.shipping ul li {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 250px;
+  margin: 15px 29px;
+}
+
+/* .fullName {
+  align-self: stretch;
+  flex-grow: 1;
+  width: 300px;
+} */
+
+.payment-products {
+  width: 25%;
+}
+
+.payBtn {
+  position: absolute;
+  width: 463px;
+  height: 32px;
+  top: 500px;
+  left: 1069px;
+}
