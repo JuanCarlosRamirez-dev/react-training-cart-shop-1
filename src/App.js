@@ -4,21 +4,36 @@ import Products from './components/Products';
 import products from './api/mock-products';
 import Filters from './components/Filter';
 import Cart from './components/Cart';
+import Payment from './components/Payment';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       products: products,
-      cartItems: [],
+      cartItems: localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")) : [],
       sort: "",
-      basics: ""
+      basics: "",
+      displayForm: false
     }
+  }
+
+  toggleCheckoutForm = () => {
+    if (!this.state.displayForm) {
+      this.setState({ displayForm: true })
+    } else {
+      this.setState({ displayForm: false })
+    }
+  }
+
+  createOrder = (order) => {
+    alert('created' + order.name)
   }
 
   removeFromCart = (product) => {
     const cartItems = this.state.cartItems.slice();
     this.setState({ cartItems: cartItems.filter(x => x.id !== product.id) })
+    localStorage.setItem("cartItems", JSON.stringify(cartItems.filter(x => x.id !== product.id)));
   }
 
   addToCart = (product) => {
@@ -34,6 +49,7 @@ class App extends Component {
       cartItems.push({ ...product, count: 1 })
     }
     this.setState({ cartItems });
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
     console.log(product)
   }
 
@@ -74,25 +90,34 @@ class App extends Component {
           <img src={logo} alt="Globant shops" />
           <Cart
             cartItems={this.state.cartItems}
-            removeFromCart={this.removeFromCart} />
+            removeFromCart={this.removeFromCart}
+            toggleCheckoutForm={this.toggleCheckoutForm} />
         </header>
         <main>
-          <div className="content">
-            <div className="filters">
-              <Filters
-                basics={this.state.basics}
-                sort={this.state.sort}
-                filterProducts={this.filterProducts}
-                sortProducts={this.sortProducts}
-              />
-            </div>
-            <div className="products-sec">
-              <div className="our-products">Our Products:</div>
-              <Products
-                products={this.state.products}
-                addToCart={this.addToCart} />
-            </div>
 
+          <div className={!this.state.displayForm ? 'display' : 'hide'}>
+            <div className="content">
+              <div className="filters">
+                <Filters
+                  basics={this.state.basics}
+                  sort={this.state.sort}
+                  filterProducts={this.filterProducts}
+                  sortProducts={this.sortProducts}
+                />
+              </div>
+              <div className="products-sec">
+                <div className="our-products">Our Products:</div>
+                <Products
+                  products={this.state.products}
+                  addToCart={this.addToCart} />
+              </div>
+            </div>
+          </div>
+          <div className={this.state.displayForm ? 'display' : 'hide'}>
+            <Payment
+              createOrder={this.createOrder}
+              cartItems={this.state.cartItems}
+              removeFromCart={this.removeFromCart} />
           </div>
         </main>
       </div>

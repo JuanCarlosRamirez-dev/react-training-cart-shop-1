@@ -7,7 +7,7 @@ export default class Cart extends Component {
     constructor() {
         super();
         this.state = {
-            displaySidebar: false
+            displaySidebar: false,
         }
     }
 
@@ -51,7 +51,7 @@ export default class Cart extends Component {
                             </div>
 
                             <div className="subtotal" >{`Subtotal: $${cartItems.reduce((a, c) => a + c.price * c.count, 0)}`}</div>
-                            <button className="button blue">Proceed to payment</button>
+                            <button onClick={() => this.props.toggleCheckoutForm()} className="button blue">Proceed to payment</button>
                             <ul className="cart-list">
                                 {cartItems.map(item => (
                                     <li key={item.id} className="cart-items">
@@ -69,11 +69,11 @@ export default class Cart extends Component {
                                 ))}
                             </ul>
                             <div className="subtotal" >{`Subtotal: $${cartItems.reduce((a, c) => a + c.price * c.count, 0)}`}</div>
-                            <button className="button blue">Proceed to payment</button>
+                            <button onClick={() => this.props.toggleCheckoutForm()} className="button blue">Proceed to payment</button>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         )
     }
 }
