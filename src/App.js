@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './assets/globant-shops.svg'
 import Products from './components/Products';
-import products from './api/mock-products';
+
 import Filters from './components/Filter';
 import Cart from './components/Cart';
 import Payment from './components/Payment';
@@ -12,10 +12,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      products: products,
       cartItems: localStorage.getItem("cartItems") ? JSON.parse(localStorage.getItem("cartItems")) : [],
-      sort: "",
-      basics: "",
       displayForm: false
     }
   }
@@ -55,35 +52,36 @@ class App extends Component {
     console.log(product)
   }
 
-  sortProducts = (e) => {
-    //mostrar por orden natural
-    let sort = e.target.value;
-    this.setState(() => ({
-      sort: sort,
-      products: this.state.products.slice().sort((a, b) =>
-        sort === "Lower price" ?
-          ((a.price > b.price) ? 1 : -1)
-          : sort === "Higher price" ?
-            ((a.price < b.price) ? 1 : -1)
-            : ((a.id < b.id) ? 1 : -1)
-
-      )
-    }))
-    console.log(e.target.value)
-  }
-
-  filterProducts = (e) => {
-    //corregir ambas opciones
-    if (e.target.value === "") {
-      this.setState({ basics: e.target.value, products: products })
-    } else {
-      this.setState({
-        basics: e.target.value,
-        products: products.filter(product => product.basics)
-      })
+  /*
+    sortProducts = (e) => {
+      //mostrar por orden natural
+      let sort = e.target.value;
+      this.setState(() => ({
+        sort: sort,
+        products: this.state.products.slice().sort((a, b) =>
+          sort === "Lower price" ?
+            ((a.price > b.price) ? 1 : -1)
+            : sort === "Higher price" ?
+              ((a.price < b.price) ? 1 : -1)
+              : ((a.id < b.id) ? 1 : -1)
+  
+        )
+      }))
+      console.log(e.target.value)
     }
-    console.log(e.target.value)
-  }
+    
+      filterProducts = (e) => {
+        //corregir ambas opciones
+        if (e.target.value === "") {
+          this.setState({ basics: e.target.value, products: products })
+        } else {
+          this.setState({
+            basics: e.target.value,
+            products: products.filter(product => product.basics)
+          })
+        }
+        console.log(e.target.value)
+      } */
 
   render() {
     return (
@@ -101,17 +99,11 @@ class App extends Component {
             <div className={!this.state.displayForm ? 'display' : 'hide'}>
               <div className="content">
                 <div className="filters">
-                  <Filters
-                    basics={this.state.basics}
-                    sort={this.state.sort}
-                    filterProducts={this.filterProducts}
-                    sortProducts={this.sortProducts}
-                  />
+                  <Filters />
                 </div>
                 <div className="products-sec">
                   <div className="our-products">Our Products:</div>
                   <Products
-                    products={this.state.products}
                     addToCart={this.addToCart} />
                 </div>
               </div>

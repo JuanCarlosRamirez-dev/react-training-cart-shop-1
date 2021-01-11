@@ -20,7 +20,7 @@ class Products extends Component {
                 { !this.props.products ? <div>Loading...</div> :
                     <ul className="products">
                         {this.props.products.map(product => (
-                            <li key={product._id}>
+                            <li key={product.id}>
                                 <div className="product">
                                     <p className={product.basics ? 'basics' : 'hide'}> BASICS</p>
                                     <img src={product.img} alt={product.name} />
@@ -45,4 +45,4 @@ class Products extends Component {
     }
 }
 
-export default connect((state) => ({ products: state.products.items }), { fetchProducts })(Products);
+export default connect((state) => ({ products: state.products.filteredItems }), { fetchProducts })(Products);
