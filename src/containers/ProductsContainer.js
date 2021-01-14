@@ -45,7 +45,7 @@ ProductsContainer.propTypes = {
       price: PropTypes.string.isRequired,
       rate: PropTypes.string.isRequired,
     })
-  ).isRequired,
+  ),
   addToCart: PropTypes.func.isRequired,
 };
 

@@ -63,18 +63,16 @@ class App extends Component {
           <main>
             <div className={!this.state.displayForm ? "display" : "hide"}>
               <div className="content">
-                <div className="filters">
-                  <Filters />
-                </div>
+                <Filters />
                 <ProductsContainer />
               </div>
             </div>
-            <div className={this.state.displayForm ? "display" : "hide"}>
-              {/* <Payment
-                /* createOrder={this.createOrder}
+            {/* <div className={this.state.displayForm ? "display" : "hide"}>
+               <Payment
+               createOrder={this.createOrder}
                 cartItems={this.state.cartItems}
-                removeFromCart={this.removeFromCart}  /> */}
-            </div>
+                removeFromCart={this.removeFromCart}  /> 
+            </div> */}
           </main>
         </div>
       </Provider>
