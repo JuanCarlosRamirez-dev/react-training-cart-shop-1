@@ -1,28 +1,28 @@
-import React, { Component } from 'react';
-import logo from './assets/globant-shops.svg'
-import Products from './components/Products';
+import React, { Component } from "react";
+import logo from "../assets/globant-shops.svg";
 
-import Filters from './components/Filter';
-import Cart from './components/Cart';
-import Payment from './components/Payment';
-import store from './store';
-import { Provider } from 'react-redux';
+import Filters from "../components/Filter";
+import Cart from "../components/Cart";
+import Payment from "../components/Payment";
+import store from "../store";
+import { Provider } from "react-redux";
+import ProductsContainer from "./ProductsContainer";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      displayForm: false
-    }
+      displayForm: false,
+    };
   }
 
   toggleCheckoutForm = () => {
     if (!this.state.displayForm) {
-      this.setState({ displayForm: true })
+      this.setState({ displayForm: true });
     } else {
-      this.setState({ displayForm: false })
+      this.setState({ displayForm: false });
     }
-  }
+  };
 
   /* createOrder = (order) => {
     alert('created' + order.name)
@@ -59,20 +59,17 @@ class App extends Component {
             <img src={logo} alt="Globant shops" />
             <Cart toggleCheckoutForm={this.toggleCheckoutForm} />
           </header>
-          <main>
 
-            <div className={!this.state.displayForm ? 'display' : 'hide'}>
+          <main>
+            <div className={!this.state.displayForm ? "display" : "hide"}>
               <div className="content">
                 <div className="filters">
                   <Filters />
                 </div>
-                <div className="products-sec">
-                  <div className="our-products">Our Products:</div>
-                  <Products />
-                </div>
+                <ProductsContainer />
               </div>
             </div>
-            <div className={this.state.displayForm ? 'display' : 'hide'}>
+            <div className={this.state.displayForm ? "display" : "hide"}>
               {/* <Payment
                 /* createOrder={this.createOrder}
                 cartItems={this.state.cartItems}
