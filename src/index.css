@@ -303,11 +303,3 @@ main {
 .payment-products {
   width: 25%;
 }
-
-.payBtn {
-  position: absolute;
-  width: 463px;
-  height: 32px;
-  top: 500px;
-  left: 1069px;
-}

@@ -1,7 +1,9 @@
 import { ADD_TO_CART, REMOVE_FROM_CART } from "./types";
+import store from '../store';
 
-export const addToCart = (product) => (dispatch, getState) => {
-    const cartItems = getState().cart.cartItems.slice();
+export const addToCart = (product) => (dispatch) => {
+    console.log(store.getState().cart.cartItems)
+    const cartItems = store.getState().cart.cartItems.slice();
     let alreadyExist = false;
     cartItems.forEach(x => {
         if (x.id === product.id) {
@@ -19,10 +21,12 @@ export const addToCart = (product) => (dispatch, getState) => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
 }
 
-export const removeFromCart = (product) => (dispatch, getState) => {
-    const cartItems = getState().cart.cartItems.slice().filter(
-        x => x.id !== product.id
-    );
+export const removeFromCart = (product) => (dispatch) => {
+    console.log(store.getState().cart.cartItems)
+    const cartItems = store.getState().cart.cartItems.slice()
+        .filter(
+            x => x.id !== product.id
+        );
     dispatch({
         type: REMOVE_FROM_CART,
         payload: { cartItems }

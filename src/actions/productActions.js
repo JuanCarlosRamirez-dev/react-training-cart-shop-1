@@ -12,7 +12,6 @@ export const fetchProducts = () => async (dispatch) => {
     });
 };
 
-//revisar el payload
 export const filterProductsByBasics = (products, basics) => (dispatch) => {
     dispatch({
         type: FILTER_PRODUCTS_BY_BASICS,

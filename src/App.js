@@ -73,10 +73,10 @@ class App extends Component {
               </div>
             </div>
             <div className={this.state.displayForm ? 'display' : 'hide'}>
-              <Payment
-                createOrder={this.createOrder}
+              {/* <Payment
+                /* createOrder={this.createOrder}
                 cartItems={this.state.cartItems}
-                removeFromCart={this.removeFromCart} />
+                removeFromCart={this.removeFromCart}  /> */}
             </div>
           </main>
         </div>
