@@ -68,11 +68,11 @@ main {
   align-items: center;
   padding: 0;
   margin: 0;
-  list-style-type: none;
   border-left: 2px solid #c6c2c2;
 }
 
 .products li {
+  list-style-type: none;
   width: 337px;
   height: 370px;
   margin: 25px 35px;
@@ -302,12 +302,4 @@ main {
 
 .payment-products {
   width: 25%;
-}
-
-.payBtn {
-  position: absolute;
-  width: 463px;
-  height: 32px;
-  top: 500px;
-  left: 1069px;
 }

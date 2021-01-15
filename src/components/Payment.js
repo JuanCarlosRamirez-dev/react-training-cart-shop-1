@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import { removeFromCart } from '../actions/cartActions';
+import { clearOrder, createOrder } from '../actions/orderActions';
 import recycleBin from '../assets/recycle-bin.png';
 
-export default class Payment extends Component {
+class Payment extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -36,13 +39,14 @@ export default class Payment extends Component {
             fullName: this.state.fullName,
             expDate: this.state.expDate,
             cvv: this.state.cvv,
-            cartItems: this.props.cartItems
+            cartItems: this.props.cartItems,
+            total: this.props.cartItems.reduce((a, c) => (a + c.price * c.count), 0)
         }
         this.props.createOrder(order)
     }
 
     render() {
-        const { cartItems } = this.props
+        const { cartItems } = this.props;
         return (
             <div className="payment-form">
                 <div className="shipping">
@@ -131,32 +135,42 @@ export default class Payment extends Component {
                                     onChange={this.handleInput} />
                             </li>
                         </ul>
-                        <button type="submit" className="button green payBtn">Pay now</button>
+
+                        <div className="payment-products">
+                            <p>Products</p>
+                            <ul className="cart-list">
+                                {cartItems.map(item => (
+                                    <li key={item.id} className="cart-items">
+
+                                        <img src={item.image} alt={item.title} />
+                                        <div>{item.name}</div>
+                                        <div>{`$${item.price} x ${item.count}`}</div>
+                                        <input
+                                            type="image"
+                                            alt="trash can"
+                                            src={recycleBin}
+                                            onClick={() => this.props.removeFromCart(item)}
+                                            className="recycle-btn" />
+                                    </li>
+                                ))}
+                            </ul>
+                            <div className="subtotal" >{`Subtotal: $${cartItems.reduce((a, c) => a + c.price * c.count, 0)}`}</div>
+                            <button type="submit" className="button green ">Pay now</button>
+                        </div>
                     </form>
 
-                </div>
-                <div className="payment-products">
-                    <p>Products</p>
-                    <ul className="cart-list">
-                        {cartItems.map(item => (
-                            <li key={item.id} className="cart-items">
-
-                                <img src={item.image} alt={item.title} />
-                                <div>{item.name}</div>
-                                <div>{`$${item.price} x ${item.count}`}</div>
-                                <input
-                                    type="image"
-                                    alt="trash can"
-                                    src={recycleBin}
-                                    onClick={() => this.props.removeFromCart(item)}
-                                    className="recycle-btn" />
-                            </li>
-                        ))}
-                    </ul>
-                    <div className="subtotal" >{`Subtotal: $${cartItems.reduce((a, c) => a + c.price * c.count, 0)}`}</div>
 
                 </div>
             </div>
         )
     }
 }
+
+export default connect((state) => ({
+    order: state.order.order,
+    cartItems: state.cart.cartItems,
+}),
+    removeFromCart,
+    createOrder,
+    clearOrder
+)(Payment);
