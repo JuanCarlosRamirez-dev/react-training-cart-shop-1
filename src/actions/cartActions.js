@@ -3,6 +3,7 @@ import store from "../store";
 
 export const addToCart = (product) => (dispatch) => {
   console.log(store.getState().cart.cartItems);
+
   const cartItems = store.getState().cart.cartItems.slice();
   let alreadyExist = false;
   cartItems.forEach((x) => {
@@ -18,11 +19,13 @@ export const addToCart = (product) => (dispatch) => {
     type: ADD_TO_CART,
     payload: { cartItems },
   });
+
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
 };
 
 export const removeFromCart = (product) => (dispatch) => {
   console.log(store.getState().cart.cartItems);
+
   const cartItems = store
     .getState()
     .cart.cartItems.slice()
@@ -31,5 +34,6 @@ export const removeFromCart = (product) => (dispatch) => {
     type: REMOVE_FROM_CART,
     payload: { cartItems },
   });
+
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
 };

@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import logo from "../assets/globant-shops.svg";
-
 import Filters from "../components/Filter";
-import Cart from "../components/Cart";
 import Payment from "../components/Payment";
 import store from "../store";
 import { Provider } from "react-redux";
 import ProductsContainer from "./ProductsContainer";
+import CartContainer from "./CartContainer";
 
 class App extends Component {
   constructor() {
@@ -57,7 +56,7 @@ class App extends Component {
         <div className="grid-container">
           <header>
             <img src={logo} alt="Globant shops" />
-            <Cart toggleCheckoutForm={this.toggleCheckoutForm} />
+            <CartContainer toggleCheckoutForm={this.toggleCheckoutForm} />
           </header>
 
           <main>
