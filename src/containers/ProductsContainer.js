@@ -16,7 +16,6 @@ class ProductsContainer extends Component {
       <div className="products-sec">
         <div className="our-products">Our Products:</div>
         <ul className="products">
-          {console.log(products)}
           {!products ? (
             <div>Loading...</div>
           ) : (

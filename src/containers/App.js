@@ -23,40 +23,13 @@ class App extends Component {
     }
   };
 
-  /* createOrder = (order) => {
-    alert('created' + order.name)
-  } */
-
-  /* removeFromCart = (product) => {
-    const cartItems = this.state.cartItems.slice();
-    this.setState({ cartItems: cartItems.filter(x => x.id !== product.id) })
-    localStorage.setItem("cartItems", JSON.stringify(cartItems.filter(x => x.id !== product.id)));
-  } */
-
-  /*  addToCart = (product) => {
-     const cartItems = this.state.cartItems.slice();
-     let alreadyInCart = false;
-     cartItems.forEach(item => {
-       if (item.id === product.id) {
-         item.count += 1;
-         alreadyInCart = true;
-       }
-     });
-     if (!alreadyInCart) {
-       cartItems.push({ ...product, count: 1 })
-     }
-     this.setState({ cartItems });
-     localStorage.setItem("cartItems", JSON.stringify(cartItems));
-     console.log(product)
-   } */
-
   render() {
     return (
       <Provider store={store}>
         <div className="grid-container">
           <header>
             <img src={logo} alt="Globant shops" />
-            <CartContainer toggleCheckoutForm={this.toggleCheckoutForm} />
+            <CartContainer onCheckoutForm={this.toggleCheckoutForm} />
           </header>
 
           <main>
