@@ -266,32 +266,48 @@ main {
 
 /*Payent Form*/
 
-.payment-form {
+.payment {
+  margin-top: 2%;
   display: flex;
-  flex-direction: row;
   justify-content: center;
 }
 
-.shipping {
-  width: 40%;
+.payment-container {
+  width: 60%;
 }
 
-.shipping p {
-  padding-left: 4%;
+form {
+  display: flex;
+  flex-direction: row;
 }
 
-.shipping ul {
+.payment-form {
+  display: flex;
+  flex-direction: column;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.payment-form legend {
+  padding-left: 3%;
+}
+
+.payment-form ul {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
   padding: 0;
 }
 
-.shipping ul li {
+.payment-form ul li {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   flex-direction: column;
-  width: 250px;
+  width: 199px;
   margin: 15px 29px;
 }
 
@@ -302,5 +318,5 @@ main {
 } */
 
 .payment-products {
-  width: 25%;
+  width: 100%;
 }

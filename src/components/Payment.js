@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { removeFromCart } from '../actions/cartActions';
 import { clearOrder, createOrder } from '../actions/orderActions';
-import recycleBin from '../assets/recycle-bin.png';
-
+import CartItem from '../components/CartItems'
+import Button from './Button';
 class Payment extends Component {
     constructor(props) {
         super(props);
@@ -48,118 +48,122 @@ class Payment extends Component {
     render() {
         const { cartItems } = this.props;
         return (
-            <div className="payment-form">
-                <div className="shipping">
+            <div className="payment">
+                <div className="payment-container">
 
                     <form onSubmit={this.createOrder}>
-                        <p>Shipping data</p>
-                        <ul>
-                            <li>
-                                <label>Name</label>
-                                <input
-                                    name="name"
-                                    type="text" required
-                                    onChange={this.handleInput} />
-                            </li>
-                            <li>
-                                <label>Last name</label>
-                                <input
-                                    name="lastName"
-                                    type="text" required
-                                    onChange={this.handleInput} />
-                            </li>
-                            <li>
-                                <label>Adress</label>
-                                <input
-                                    name="adress"
-                                    type="text" required
-                                    onChange={this.handleInput} />
-                            </li>
-                            <li>
-                                <label>City</label>
-                                <input
-                                    name="city"
-                                    type="text" required
-                                    onChange={this.handleInput} />
-                            </li>
-                            <li>
-                                <label>State</label>
-                                <input
-                                    name="state"
-                                    type="text" required
-                                    onChange={this.handleInput} />
-                            </li>
-                            <li>
-                                <label>Zip code</label>
-                                <input
-                                    name="zipcode"
-                                    type="text" required
-                                    onChange={this.handleInput} />
-                            </li>
-                            <li>
-                                <label>Phone number</label>
-                                <input
-                                    name="phoneNumber"
-                                    type="text" required
-                                    onChange={this.handleInput} />
-                            </li>
-                        </ul>
-                        <p>Credit card data:</p>
-                        <ul>
-                            <li>
-                                <label>Credit card number</label>
-                                <input
-                                    name="creditCard"
-                                    type="text" required
-                                    onChange={this.handleInput} />
-                            </li>
-                            <li className="fullName">
-                                <label>Fullname</label>
-                                <input
-                                    name="fullName"
-                                    type="text" required
-                                    onChange={this.handleInput} />
-                            </li>
-                            <li>
-                                <label>Exp. date</label>
-                                <input
-                                    name="expDate"
-                                    type="text" required
-                                    onChange={this.handleInput} />
-                            </li>
-                            <li>
-                                <label>CVV</label>
-                                <input
-                                    name="cvv"
-                                    type="text" required
-                                    onChange={this.handleInput} />
-                            </li>
-                        </ul>
+                        <div className="payment-form">
+                            <fieldset>
+                                <legend>Shipping data</legend>
+                                <ul>
+                                    <li>
+                                        <label>Name</label>
+                                        <input
+                                            name="name"
+                                            type="text" required
+                                            onChange={this.handleInput} />
+                                    </li>
+                                    <li>
+                                        <label>Last name</label>
+                                        <input
+                                            name="lastName"
+                                            type="text" required
+                                            onChange={this.handleInput} />
+                                    </li>
+                                    <li>
+                                        <label>Adress</label>
+                                        <input
+                                            name="adress"
+                                            type="text" required
+                                            onChange={this.handleInput} />
+                                    </li>
+                                    <li>
+                                        <label>City</label>
+                                        <input
+                                            name="city"
+                                            type="text" required
+                                            onChange={this.handleInput} />
+                                    </li>
+                                    <li>
+                                        <label>State</label>
+                                        <input
+                                            name="state"
+                                            type="text" required
+                                            onChange={this.handleInput} />
+                                    </li>
+                                    <li>
+                                        <label>Zip code</label>
+                                        <input
+                                            name="zipcode"
+                                            type="text" required
+                                            onChange={this.handleInput} />
+                                    </li>
+                                    <li>
+                                        <label>Phone number</label>
+                                        <input
+                                            name="phoneNumber"
+                                            type="text" required
+                                            onChange={this.handleInput} />
+                                    </li>
+                                </ul>
+                            </fieldset>
+                            <fieldset>
+                                <legend>Credit card data:</legend>
+                                <ul>
+                                    <li>
+                                        <label>Credit card number</label>
+                                        <input
+                                            name="creditCard"
+                                            type="text" required
+                                            onChange={this.handleInput} />
+                                    </li>
+                                    <li className="fullName">
+                                        <label>Fullname</label>
+                                        <input
+                                            name="fullName"
+                                            type="text" required
+                                            onChange={this.handleInput} />
+                                    </li>
+                                    <li>
+                                        <label>Exp. date</label>
+                                        <input
+                                            name="expDate"
+                                            type="text" required
+                                            onChange={this.handleInput} />
+                                    </li>
+                                    <li>
+                                        <label>CVV</label>
+                                        <input
+                                            name="cvv"
+                                            type="text" required
+                                            onChange={this.handleInput} />
+                                    </li>
+                                </ul>
+                            </fieldset>
+                        </div>
 
                         <div className="payment-products">
                             <p>Products</p>
                             <ul className="cart-list">
-                                {cartItems.map(item => (
-                                    <li key={item.id} className="cart-items">
-
-                                        <img src={item.image} alt={item.title} />
-                                        <div>{item.name}</div>
-                                        <div>{`$${item.price} x ${item.count}`}</div>
-                                        <input
-                                            type="image"
-                                            alt="trash can"
-                                            src={recycleBin}
-                                            onClick={() => this.props.removeFromCart(item)}
-                                            className="recycle-btn" />
-                                    </li>
+                                {cartItems.map((item) => (
+                                    <CartItem
+                                        key={item.id}
+                                        cartItems={item}
+                                        onRemoveFromCart={() =>
+                                            this.props.removeFromCart(item)
+                                        }
+                                    />
                                 ))}
                             </ul>
-                            <div className="subtotal" >{`Subtotal: $${cartItems.reduce((a, c) => a + c.price * c.count, 0)}`}</div>
-                            <button type="submit" className="button green ">Pay now</button>
+                            {cartItems.length === 0 ? (<h3 style={{ textAlign: "center" }}>Now your cart is empty</h3>
+                            ) : (
+                                    <div>
+                                        <div className="subtotal" >{`Subtotal: $${cartItems.reduce((a, c) => a + c.price * c.count, 0)}`}</div>
+                                        <Button label={"Pay now"} className={"button green"} />
+                                    </div>
+                                )}
                         </div>
                     </form>
-
-
                 </div>
             </div>
         )
@@ -167,10 +171,7 @@ class Payment extends Component {
 }
 
 export default connect((state) => ({
-    order: state.order.order,
     cartItems: state.cart.cartItems,
 }),
-    removeFromCart,
-    createOrder,
-    clearOrder
+    { removeFromCart },
 )(Payment);

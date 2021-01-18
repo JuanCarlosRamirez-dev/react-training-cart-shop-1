@@ -29,7 +29,9 @@ class App extends Component {
         <div className="grid-container">
           <header>
             <img src={logo} alt="Globant shops" />
-            <CartContainer onCheckoutForm={this.toggleCheckoutForm} />
+            <div className={!this.state.displayForm ? "display" : "hide"}>
+              <CartContainer onCheckoutForm={this.toggleCheckoutForm} />
+            </div>
           </header>
 
           <main>
@@ -39,12 +41,11 @@ class App extends Component {
                 <ProductsContainer />
               </div>
             </div>
-            {/* <div className={this.state.displayForm ? "display" : "hide"}>
-               <Payment
-               createOrder={this.createOrder}
-                cartItems={this.state.cartItems}
-                removeFromCart={this.removeFromCart}  /> 
-            </div> */}
+            <div className={this.state.displayForm ? "display" : "hide"}>
+              <Payment
+                createOrder={this.createOrder}
+                removeFromCart={this.removeFromCart} />
+            </div>
           </main>
         </div>
       </Provider>

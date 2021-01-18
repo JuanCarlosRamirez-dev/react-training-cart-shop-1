@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { removeFromCart } from "../actions/cartActions";
 import closeBtn from "../assets/close.png";
-import Cart from "../components/CartItems";
 import PropTypes from "prop-types";
 import Button from "../components/Button";
 import CartHeader from "../components/CartHeader";
+import CartItem from "../components/CartItems";
 class CartContainer extends Component {
   constructor() {
     super();
@@ -57,13 +57,14 @@ class CartContainer extends Component {
                         0
                       )}`}</div>
                       <Button
+                        onHandleClick={this.props.onCheckoutForm}
                         label={"Proceed to payment"}
                         className={"button blue"}
                       />
 
                       <ul className="cart-list">
                         {cartItems.map((item) => (
-                          <Cart
+                          <CartItem
                             key={item.id}
                             cartItems={item}
                             onRemoveFromCart={() =>
@@ -78,6 +79,7 @@ class CartContainer extends Component {
                         0
                       )}`}</div>
                       <Button
+                        onHandleClick={this.props.onCheckoutForm}
                         label={"Proceed to payment"}
                         className={"button blue"}
                       />
@@ -104,7 +106,6 @@ CartContainer.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  order: state.order.order,
   cartItems: state.cart.cartItems,
 });
 
