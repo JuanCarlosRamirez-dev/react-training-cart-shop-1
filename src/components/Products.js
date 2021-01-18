@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Button from "./Button";
 
 const Product = ({ product, onAddToCartClicked }) => (
   <li key={product.id}>
@@ -12,10 +13,8 @@ const Product = ({ product, onAddToCartClicked }) => (
         <div className="product-price">{"$" + product.price}</div>
       </div>
       <div className="buttons">
-        <button className="button blue">See details</button>
-        <button onClick={onAddToCartClicked} className="button green">
-          Add to cart
-        </button>
+        <Button className={"button blue"} label={"See details"} />
+        <Button className={"button green"} label={"Add to cart"} onHandleClick={onAddToCartClicked} />
       </div>
     </div>
   </li>
