@@ -18,7 +18,7 @@ const CartItem = ({ cartItems, onRemoveFromCart }) => (
 );
 
 CartItem.propTypes = {
-  cartItems: PropTypes.arrayOf(
+  cartItems: PropTypes.objectOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       price: PropTypes.string.isRequired,

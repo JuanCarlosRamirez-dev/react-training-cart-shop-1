@@ -10,7 +10,7 @@ class Payment extends Component {
         this.state = {
             name: "",
             lastName: "",
-            addres: "",
+            address: "",
             city: "",
             state: "",
             zipcode: "",
@@ -28,19 +28,20 @@ class Payment extends Component {
     createOrder = (e) => {
         e.preventDefault();
         const order = {
-            name: this.state.name,
-            lastName: this.state.lastName,
-            addres: this.state.addres,
-            city: this.state.city,
-            state: this.state.state,
-            zipcode: this.state.zipcode,
-            phoneNumber: this.state.phoneNumber,
-            creditCard: this.state.creditCard,
-            fullName: this.state.fullName,
-            expDate: this.state.expDate,
-            cvv: this.state.cvv,
-            cartItems: this.props.cartItems,
-            total: this.props.cartItems.reduce((a, c) => (a + c.price * c.count), 0)
+            shippingData: {
+                address: this.state.address,
+                city: this.state.city,
+                state: this.state.state,
+                phoneNumber: this.state.phoneNumber,
+                fullName: this.state.fullName,
+                zipcode: this.state.zipcode,
+            },
+            creditCardData: {
+                creditCard: this.state.creditCard,
+                expDate: this.state.expDate,
+                cvv: this.state.cvv,
+                fullName: this.state.fullName,
+            }
         }
         this.props.createOrder(order)
     }
@@ -71,9 +72,9 @@ class Payment extends Component {
                                             onChange={this.handleInput} />
                                     </li>
                                     <li>
-                                        <label>Adress</label>
+                                        <label>Address</label>
                                         <input
-                                            name="adress"
+                                            name="address"
                                             type="text" required
                                             onChange={this.handleInput} />
                                     </li>
@@ -117,7 +118,7 @@ class Payment extends Component {
                                             type="text" required
                                             onChange={this.handleInput} />
                                     </li>
-                                    <li className="fullName">
+                                    <li>
                                         <label>Fullname</label>
                                         <input
                                             name="fullName"
@@ -159,7 +160,7 @@ class Payment extends Component {
                             ) : (
                                     <div>
                                         <div className="subtotal" >{`Subtotal: $${cartItems.reduce((a, c) => a + c.price * c.count, 0)}`}</div>
-                                        <Button label={"Pay now"} className={"button green"} />
+                                        <Button label={"Pay now"} className={"button green"} type={"submit"} />
                                     </div>
                                 )}
                         </div>
@@ -171,7 +172,12 @@ class Payment extends Component {
 }
 
 export default connect((state) => ({
+    order: state.order.order,
     cartItems: state.cart.cartItems,
 }),
-    { removeFromCart },
+    {
+        clearOrder,
+        createOrder,
+        removeFromCart
+    },
 )(Payment);
