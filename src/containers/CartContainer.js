@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { removeFromCart } from "../actions/cartActions";
-import cartImg from "../assets/cart.svg";
 import closeBtn from "../assets/close.png";
-import Cart from "../components/Cart";
 import PropTypes from "prop-types";
+import Button from "../components/Button";
+import CartHeader from "../components/CartHeader";
+import CartItem from "../components/CartItems";
 class CartContainer extends Component {
   constructor() {
     super();
@@ -26,26 +27,16 @@ class CartContainer extends Component {
     return (
       <div>
         <div className="cart">
-          <input
-            value={this.state.displaySidebar ? true : false}
-            type="image"
-            src={cartImg}
-            alt="Cart"
-            onClick={() => this.toggleCart()}
+          <CartHeader
+            onHandleClick={() => this.toggleCart()}
+            cartItems={cartItems}
           />
-          <p href="/" className="counter-circle">
-            {cartItems.length === 0 ? (
-              <span>0</span>
-            ) : (
-              <span>{cartItems.length}</span>
-            )}
-          </p>
 
           <div className={this.state.displaySidebar ? "display" : "hide"}>
             <div className="cart-sidebar">
               <div className="modal"></div>
               <div className="sidebar-content">
-                <div className="cart-header">
+                <div className="cart-content">
                   <p>Cart:</p>
                   <input
                     onClick={() => this.toggleCart()}
@@ -53,7 +44,6 @@ class CartContainer extends Component {
                     className="close-btn"
                     src={closeBtn}
                     alt="close button"
-                    value={this.state.displaySidebar ? true : false}
                   />
                 </div>
                 {cartItems.length === 0 ? (
@@ -61,40 +51,40 @@ class CartContainer extends Component {
                     Please add some products to your cart
                   </h3>
                 ) : (
-                  <div>
-                    <div className="subtotal">{`Subtotal: $${cartItems.reduce(
-                      (a, c) => a + c.price * c.count,
-                      0
-                    )}`}</div>
-                    <button
-                      /* onClick={onCheckoutForm} */ className="button blue"
-                    >
-                      Proceed to payment
-                    </button>
+                    <div>
+                      <div className="subtotal">{`Subtotal: $${cartItems.reduce(
+                        (a, c) => a + c.price * c.count,
+                        0
+                      )}`}</div>
+                      <Button
+                        onHandleClick={this.props.onCheckoutForm}
+                        label={"Proceed to payment"}
+                        className={"button blue"}
+                      />
 
-                    <ul className="cart-list">
-                      {cartItems.map((item) => (
-                        <Cart
-                          key={item.id}
-                          cartItems={item}
-                          onRemoveFromCart={() =>
-                            this.props.removeFromCart(item)
-                          }
-                        />
-                      ))}
-                    </ul>
+                      <ul className="cart-list">
+                        {cartItems.map((item) => (
+                          <CartItem
+                            key={item.id}
+                            cartItems={item}
+                            onRemoveFromCart={() =>
+                              this.props.removeFromCart(item)
+                            }
+                          />
+                        ))}
+                      </ul>
 
-                    <div className="subtotal">{`Subtotal: $${cartItems.reduce(
-                      (a, c) => a + c.price * c.count,
-                      0
-                    )}`}</div>
-                    <button
-                      /* onClick={onCheckoutForm} */ className="button blue"
-                    >
-                      Proceed to payment
-                    </button>
-                  </div>
-                )}
+                      <div className="subtotal">{`Subtotal: $${cartItems.reduce(
+                        (a, c) => a + c.price * c.count,
+                        0
+                      )}`}</div>
+                      <Button
+                        onHandleClick={this.props.onCheckoutForm}
+                        label={"Proceed to payment"}
+                        className={"button blue"}
+                      />
+                    </div>
+                  )}
               </div>
             </div>
           </div>
@@ -116,7 +106,6 @@ CartContainer.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  order: state.order.order,
   cartItems: state.cart.cartItems,
 });
 

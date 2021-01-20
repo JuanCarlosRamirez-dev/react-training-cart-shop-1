@@ -20,7 +20,7 @@ app.get('/products', (req, res) => {
       if (req.query.filter && req.query.filter === 'basics') {
         result = result.filter(_product => _product.basics);
       }
-      
+
       if (req.query.sort) {
         result = result.sort(sortFns[`sort${req.query.sort}`]);
       }
@@ -28,7 +28,7 @@ app.get('/products', (req, res) => {
       let pages = result.length / items > 1 ? 2 : 1;
       let start = (page - 1) * items;
       let end = Math.min(items * page, result.length);
-      result = mockProducts
+      result = result
         .slice(start, end)
         .map((_product, index) => ({ ..._product, img: imgData[index].download_url }));
 
@@ -43,7 +43,7 @@ app.get('/products', (req, res) => {
     })
     .catch(err => {
       console.log(err);
-      res.json({message: 'CANNOT_RETURN_ELEMENTS'})
+      res.json({ message: 'CANNOT_RETURN_ELEMENTS' })
     });
 });
 

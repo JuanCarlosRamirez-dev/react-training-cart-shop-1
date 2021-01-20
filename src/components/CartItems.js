@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import recycleBin from "../assets/recycle-bin.png";
 
-const Cart = ({ cartItems, onRemoveFromCart }) => (
+const CartItem = ({ cartItems, onRemoveFromCart }) => (
   <li key={cartItems.id} className="cart-items">
     <img src={cartItems.img} alt={cartItems.title} />
     <div>{cartItems.name}</div>
@@ -17,8 +17,8 @@ const Cart = ({ cartItems, onRemoveFromCart }) => (
   </li>
 );
 
-Cart.propTypes = {
-  cartItems: PropTypes.arrayOf(
+CartItem.propTypes = {
+  cartItems: PropTypes.objectOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       price: PropTypes.string.isRequired,
@@ -30,4 +30,4 @@ Cart.propTypes = {
   onRemoveFromCart: PropTypes.func.isRequired,
 };
 
-export default Cart;
+export default CartItem;

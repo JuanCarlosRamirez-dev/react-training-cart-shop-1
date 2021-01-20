@@ -1,22 +1,22 @@
+import { postOrder } from "../api/client";
 import { CLEAR_CART, CLEAR_ORDER, CREATE_ORDER } from "./types"
 
-export const createOrder = (order) => (dispatch) => {
-    fetch("http://localhost:8080/order", {
-        method: "POST",
-        headers: {
-            "Content-type": "application/json"
-        },
-        body: JSON.stringify(order)
-    })
-        .then((res) => res.json())
-        .then((data) => {
-            dispatch({
-                type: CREATE_ORDER,
-                payload: data
-            });
-            localStorage.clear("cartItems");
-            dispatch({ type: CLEAR_CART })
+export const createOrder = (order) => async (dispatch) => {
+    console.log(order)
+    try {
+        const res = await postOrder(order);
+        console.log(res.data)
+        dispatch({
+            type: CREATE_ORDER,
+            payload: res.data.message
         });
+        localStorage.clear("cartItems");
+        dispatch({ type: CLEAR_CART })
+    } catch (error) {
+        console.log(error)
+    }
+
+
 };
 
 export const clearOrder = () => (dispatch) => {

@@ -1,6 +1,6 @@
 import { CLEAR_ORDER, CREATE_ORDER } from "../actions/types";
 
-const orderReducer = (state = {}, action) => {
+export const orderReducer = (state = {}, action) => {
     switch (action.type) {
         case CREATE_ORDER:
             return { order: action.payload }
@@ -10,5 +10,3 @@ const orderReducer = (state = {}, action) => {
             return state
     }
 }
-
-export { orderReducer };
