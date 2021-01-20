@@ -6,12 +6,14 @@ import store from "../store";
 import { Provider } from "react-redux";
 import ProductsContainer from "./ProductsContainer";
 import CartContainer from "./CartContainer";
+import ProductDetail from "./ProductDetail";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       displayForm: false,
+      displayDetail: false,
     };
   }
 
@@ -22,6 +24,14 @@ class App extends Component {
       this.setState({ displayForm: false });
     }
   };
+
+  displayProductDetail = () => {
+    if (!this.state.displayDetail) {
+      this.setState({ displayDetail: true });
+    } else {
+      this.setState({ displayDetail: false })
+    }
+  }
 
   render() {
     return (
@@ -42,9 +52,10 @@ class App extends Component {
               </div>
             </div>
             <div className={this.state.displayForm ? "display" : "hide"}>
-              <Payment
-                createOrder={this.createOrder}
-                removeFromCart={this.removeFromCart} />
+              <Payment />
+            </div>
+            <div className={this.state.displayProductDetail ? "display" : "hide"}>
+              <ProductDetail />
             </div>
           </main>
         </div>
