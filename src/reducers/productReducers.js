@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS, FILTER_PRODUCTS_BY_BASICS, ORDER_PRODUCTS_BY_PRICE } from "../actions/types";
+import { FETCH_PRODUCTS, FILTER_PRODUCTS_BY_BASICS, ORDER_PRODUCTS_BY_PRICE, SEE_DETAILS } from "../actions/types";
 
 export const productsReducer = (state = {}, action) => {
 
@@ -20,6 +20,9 @@ export const productsReducer = (state = {}, action) => {
 
         case FETCH_PRODUCTS:
             return { items: action.payload, filteredItems: action.payload };
+
+        case SEE_DETAILS:
+            return { product: action.payload.product }
         default:
             return state
     }

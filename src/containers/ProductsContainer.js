@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchProducts } from "../actions/productActions";
+import { fetchProducts, onSeeDetails } from "../actions/productActions";
 import { addToCart } from "../actions/cartActions";
 import Product from "../components/Products";
 
@@ -19,14 +19,15 @@ class ProductsContainer extends Component {
           {!products ? (
             <div>Loading...</div>
           ) : (
-            products.map((product) => (
-              <Product
-                key={product.id}
-                product={product}
-                onAddToCartClicked={() => this.props.addToCart(product)}
-              />
-            ))
-          )}
+              products.map((product) => (
+                <Product
+                  key={product.id}
+                  product={product}
+                  onSeeDetailsClicked={() => this.props.onSeeDetails(product)}
+                  onAddToCartClicked={() => this.props.addToCart(product)}
+                />
+              ))
+            )}
         </ul>
       </div>
     );
@@ -46,6 +47,7 @@ ProductsContainer.propTypes = {
     })
   ),
   addToCart: PropTypes.func.isRequired,
+  onSeeDetails: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -55,4 +57,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   fetchProducts,
   addToCart,
+  onSeeDetails
 })(ProductsContainer);

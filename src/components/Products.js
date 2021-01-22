@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Button from "./Button";
 
-const Product = ({ product, onAddToCartClicked }) => (
+const Product = ({ product, onAddToCartClicked, onSeeDetailsClicked }) => (
   <li key={product.id}>
     <div className="product">
       <p className={product.basics ? "basics" : "hide"}> BASICS</p>
@@ -13,7 +13,7 @@ const Product = ({ product, onAddToCartClicked }) => (
         <div className="product-price">{"$" + product.price}</div>
       </div>
       <div className="buttons">
-        <Button className={"button blue"} label={"See details"} />
+        <Button className={"button blue"} label={"See details"} onHandleClick={onSeeDetailsClicked} />
         <Button className={"button green"} label={"Add to cart"} onHandleClick={onAddToCartClicked} />
       </div>
     </div>

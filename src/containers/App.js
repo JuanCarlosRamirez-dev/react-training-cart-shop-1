@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import logo from "../assets/globant-shops.svg";
 import Filters from "../components/Filter";
-import Payment from "../components/Payment";
+import Payment from "./PaymentContainer";
 import store from "../store";
 import { Provider } from "react-redux";
 import ProductsContainer from "./ProductsContainer";
 import CartContainer from "./CartContainer";
-import ProductDetail from "./ProductDetail";
+import ProductDetail from "./ProductDetailContainer";
 
 class App extends Component {
   constructor() {
@@ -14,7 +14,7 @@ class App extends Component {
     this.state = {
       displayForm: false,
       displayDetail: false,
-    };
+    }
   }
 
   toggleCheckoutForm = () => {
@@ -23,13 +23,13 @@ class App extends Component {
     } else {
       this.setState({ displayForm: false });
     }
-  };
+  }
 
-  displayProductDetail = () => {
-    if (!this.state.displayDetail) {
-      this.setState({ displayDetail: true });
+  toggleProductDetail = () => {
+    if (this.state.displayDetail) {
+      this.setState({ displayDetail: false });
     } else {
-      this.setState({ displayDetail: false })
+      this.setState({ displayDetail: true })
     }
   }
 
@@ -45,16 +45,16 @@ class App extends Component {
           </header>
 
           <main>
-            <div className={!this.state.displayForm ? "display" : "hide"}>
+            <div className={!this.state.displayForm && !this.state.displayDetail ? "display" : "hide"}>
               <div className="content">
                 <Filters />
                 <ProductsContainer />
               </div>
             </div>
-            <div className={this.state.displayForm ? "display" : "hide"}>
+            <div className={this.state.displayForm && !this.state.displayDetail ? "display" : "hide"}>
               <Payment />
             </div>
-            <div className={this.state.displayProductDetail ? "display" : "hide"}>
+            <div className={this.state.displayDetail ? "display" : "hide"}>
               <ProductDetail />
             </div>
           </main>
