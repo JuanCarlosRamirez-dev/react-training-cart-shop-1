@@ -50,6 +50,36 @@ main {
   display: none;
 }
 
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+}
+
+.button {
+  width: 100%;
+  height: 32px;
+  margin: 5px 0;
+  color: #fff;
+  border-style: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  border: 1px #000 solid;
+}
+
+.button.green {
+  background-color: #2ecc71;
+}
+
+.button.blue {
+  background-color: #2980b9;
+}
+
 /*-------------products-------------*/
 .products-sec {
   flex: 3 30%;
@@ -112,34 +142,6 @@ main {
   line-height: 21px;
 }
 
-.buttons {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-}
-
-.button {
-  width: 100%;
-  height: 32px;
-  margin: 5px 0;
-  color: #fff;
-  border-style: none;
-  cursor: pointer;
-}
-
-.button:hover {
-  border: 1px #000 solid;
-}
-
-.button.green {
-  background-color: #2ecc71;
-}
-
-.button.blue {
-  background-color: #2980b9;
-}
 /*----------------------------*/
 
 /*--------------Filter------------*/
@@ -319,4 +321,55 @@ fieldset {
 
 .payment-products {
   width: 100%;
+}
+/*-------------------*/
+
+/*Product detail*/
+
+.product-detail {
+  margin-top: 3%;
+  display: flex;
+  justify-content: center;
+}
+
+.product-detail_container {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.product-info img {
+  width: 250px;
+  height: 334.27px;
+}
+
+.product-info div {
+  width: 380px;
+  text-align: left;
+}
+
+.comments-border {
+  margin: 60px 0 20px;
+  border: 1px solid #e3e3e3;
+  width: 100%;
+}
+
+.comment {
+  margin: 20px 0;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.comment h4,
+p {
+  margin: 6px;
+  padding: 0;
 }

@@ -1,64 +1,41 @@
 import React, { Component } from "react";
 import logo from "../assets/globant-shops.svg";
-import Filters from "../components/Filter";
-import Payment from "../components/Payment";
+import Filters from "./FilterContainer";
+import Payment from "./PaymentContainer";
 import store from "../store";
 import { Provider } from "react-redux";
 import ProductsContainer from "./ProductsContainer";
 import CartContainer from "./CartContainer";
-import ProductDetail from "./ProductDetail";
+import ProductDetailContainer from "./ProductDetailContainer";
+import { Route, Switch } from 'react-router-dom';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      displayForm: false,
-      displayDetail: false,
-    };
-  }
-
-  toggleCheckoutForm = () => {
-    if (!this.state.displayForm) {
-      this.setState({ displayForm: true });
-    } else {
-      this.setState({ displayForm: false });
-    }
-  };
-
-  displayProductDetail = () => {
-    if (!this.state.displayDetail) {
-      this.setState({ displayDetail: true });
-    } else {
-      this.setState({ displayDetail: false })
-    }
-  }
 
   render() {
     return (
       <Provider store={store}>
+
         <div className="grid-container">
           <header>
             <img src={logo} alt="Globant shops" />
-            <div className={!this.state.displayForm ? "display" : "hide"}>
-              <CartContainer onCheckoutForm={this.toggleCheckoutForm} />
-            </div>
+            <CartContainer />
           </header>
 
           <main>
-            <div className={!this.state.displayForm ? "display" : "hide"}>
-              <div className="content">
-                <Filters />
-                <ProductsContainer />
-              </div>
-            </div>
-            <div className={this.state.displayForm ? "display" : "hide"}>
-              <Payment />
-            </div>
-            <div className={this.state.displayProductDetail ? "display" : "hide"}>
-              <ProductDetail />
-            </div>
+            <Switch>
+              <Route path="/products" render={() =>
+                <div className="content">
+                  <Filters />
+                  <ProductsContainer />
+                </div>
+              } />
+              <Route path="/payment" component={Payment} />
+              <Route path="/:productId" component={ProductDetailContainer} />
+            </Switch>
           </main>
+
         </div>
+
       </Provider>
     );
   }

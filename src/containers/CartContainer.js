@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import Button from "../components/Button";
 import CartHeader from "../components/CartHeader";
 import CartItem from "../components/CartItems";
+import { Link } from 'react-router-dom';
 class CartContainer extends Component {
   constructor() {
     super();
@@ -56,11 +57,12 @@ class CartContainer extends Component {
                         (a, c) => a + c.price * c.count,
                         0
                       )}`}</div>
-                      <Button
-                        onHandleClick={this.props.onCheckoutForm}
-                        label={"Proceed to payment"}
-                        className={"button blue"}
-                      />
+                      <Link to={`/payment`}>
+                        <Button
+                          label={"Proceed to payment"}
+                          className={"button blue"}
+                        />
+                      </Link>
 
                       <ul className="cart-list">
                         {cartItems.map((item) => (
@@ -78,11 +80,12 @@ class CartContainer extends Component {
                         (a, c) => a + c.price * c.count,
                         0
                       )}`}</div>
-                      <Button
-                        onHandleClick={this.props.onCheckoutForm}
-                        label={"Proceed to payment"}
-                        className={"button blue"}
-                      />
+                      <Link to={`/payment`}>
+                        <Button
+                          label={"Proceed to payment"}
+                          className={"button blue"}
+                        />
+                      </Link>
                     </div>
                   )}
               </div>

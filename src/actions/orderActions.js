@@ -8,15 +8,13 @@ export const createOrder = (order) => async (dispatch) => {
         console.log(res.data)
         dispatch({
             type: CREATE_ORDER,
-            payload: res.data.message
+            payload: res
         });
         localStorage.clear("cartItems");
         dispatch({ type: CLEAR_CART })
     } catch (error) {
         console.log(error)
     }
-
-
 };
 
 export const clearOrder = () => (dispatch) => {

@@ -2,7 +2,6 @@ import { ADD_TO_CART, REMOVE_FROM_CART } from "./types";
 import store from "../store";
 
 export const addToCart = (product) => (dispatch) => {
-  console.log(store.getState().cart.cartItems);
 
   const cartItems = store.getState().cart.cartItems.slice();
   let alreadyExist = false;
@@ -24,7 +23,6 @@ export const addToCart = (product) => (dispatch) => {
 };
 
 export const removeFromCart = (product) => (dispatch) => {
-  console.log(store.getState().cart.cartItems);
 
   const cartItems = store
     .getState()

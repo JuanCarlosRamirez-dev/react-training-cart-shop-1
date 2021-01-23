@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Button from "./Button";
+import { Link } from 'react-router-dom';
 
-const Product = ({ product, onAddToCartClicked }) => (
+const Product = ({ product, onAddToCartClicked, onSeeDetailsClicked }) => (
   <li key={product.id}>
     <div className="product">
       <p className={product.basics ? "basics" : "hide"}> BASICS</p>
@@ -13,7 +14,9 @@ const Product = ({ product, onAddToCartClicked }) => (
         <div className="product-price">{"$" + product.price}</div>
       </div>
       <div className="buttons">
-        <Button className={"button blue"} label={"See details"} />
+        <Link to={`/${product.id}`} className="buttons">
+          <Button className={"button blue"} label={"See details"} onHandleClick={onSeeDetailsClicked} />
+        </Link>
         <Button className={"button green"} label={"Add to cart"} onHandleClick={onAddToCartClicked} />
       </div>
     </div>
@@ -31,6 +34,7 @@ Product.propTypes = {
     rate: PropTypes.string.isRequired,
   }),
   onAddToCartClicked: PropTypes.func.isRequired,
+  onSeeDetailsClicked: PropTypes.func.isRequired
 };
 
 export default Product;

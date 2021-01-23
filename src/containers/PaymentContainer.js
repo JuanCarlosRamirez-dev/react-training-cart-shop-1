@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { removeFromCart } from '../actions/cartActions';
 import { clearOrder, createOrder } from '../actions/orderActions';
 import CartItem from '../components/CartItems'
-import Button from './Button';
+import Button from '../components/Button';
 class Payment extends Component {
     constructor(props) {
         super(props);
