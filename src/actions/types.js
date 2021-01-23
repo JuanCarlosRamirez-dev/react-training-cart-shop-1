@@ -9,4 +9,4 @@ export const CREATE_ORDER = "CREATE_ORDER";
 export const CLEAR_CART = "CLEAR_CART";
 export const CLEAR_ORDER = "CLEAR_ORDER";
 
-export const SEE_DETAILS = "SEE_DETAILS";
+export const SEE_PRODUCT_DETAIL = "SEE_PRODUCT_DETAIL";

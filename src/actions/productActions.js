@@ -1,12 +1,11 @@
-
-
 import { getProducts } from "../api/client";
-import { FETCH_PRODUCTS, FILTER_PRODUCTS_BY_BASICS, ORDER_PRODUCTS_BY_PRICE, SEE_DETAILS } from "./types";
+import { FETCH_PRODUCTS, FILTER_PRODUCTS_BY_BASICS, ORDER_PRODUCTS_BY_PRICE, SEE_PRODUCT_DETAIL } from "./types";
+import store from "../store";
 
 export const fetchProducts = () => async (dispatch) => {
 
     const res = await getProducts();
-    console.log(res)
+
     dispatch({
         type: FETCH_PRODUCTS,
         payload: res.products
@@ -46,10 +45,10 @@ export const sortProducts = (filteredProducts, sort) => (dispatch) => {
 }
 
 export const onSeeDetails = (product) => async (dispatch) => {
-    /* const { data } = await getProducts(product); */
     console.log(product)
+    console.log(store.getState());
     dispatch({
-        type: SEE_DETAILS,
+        type: SEE_PRODUCT_DETAIL,
         payload: product
     })
 }

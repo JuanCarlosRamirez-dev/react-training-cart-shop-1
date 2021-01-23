@@ -6,6 +6,7 @@ import { addToCart } from "../actions/cartActions";
 import Product from "../components/Products";
 
 class ProductsContainer extends Component {
+
   componentDidMount() {
     this.props.fetchProducts();
   }
