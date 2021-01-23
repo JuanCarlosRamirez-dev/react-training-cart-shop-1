@@ -14,7 +14,7 @@ const Product = ({ product, onAddToCartClicked, onSeeDetailsClicked }) => (
         <div className="product-price">{"$" + product.price}</div>
       </div>
       <div className="buttons">
-        <Link to={`/${product.id}`} className="buttons">
+        <Link to={`/${product.id}`} style={{ width: "100%" }}>
           <Button className={"button blue"} label={"See details"} onHandleClick={onSeeDetailsClicked} />
         </Link>
         <Button className={"button green"} label={"Add to cart"} onHandleClick={onAddToCartClicked} />
