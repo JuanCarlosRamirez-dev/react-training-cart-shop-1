@@ -2,15 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import Button from "./Button";
 import { Link } from 'react-router-dom';
+import Rating from "./Rating";
 
 const Product = ({ product, onAddToCartClicked, onSeeDetailsClicked }) => (
   <li key={product.id}>
     <div className="product">
       <p className={product.basics ? "basics" : "hide"}> BASICS</p>
-      <img src={product.img} alt={product.name} />
+      <img className="product-img" src={product.img} alt={product.name} />
       <div className="product-info">
         <p>{product.name}</p>
-        <p>Stars and comments</p>
+        <Rating commentsNumber={product.comments} />
         <div className="product-price">{"$" + product.price}</div>
       </div>
       <div className="buttons">

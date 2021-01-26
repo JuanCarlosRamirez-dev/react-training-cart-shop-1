@@ -20,10 +20,7 @@ export const productsReducer = (state = {}, action) => {
             return { items: action.payload, filteredItems: action.payload };
 
         case SEE_PRODUCT_DETAIL:
-            return {
-                ...state,
-                product: action.payload
-            };
+            return { product: action.payload };
         default:
             return state
     }

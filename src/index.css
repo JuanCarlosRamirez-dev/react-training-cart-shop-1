@@ -128,7 +128,7 @@ main {
   margin: 0;
 }
 
-.product img {
+.product-img {
   width: 110px;
   height: 175px;
 }
@@ -137,12 +137,17 @@ main {
   align-self: baseline;
 }
 
+.product-info p {
+  margin: 10px 0;
+}
+
 .product-price {
+  margin: 8px 0;
   font-size: 18px;
   line-height: 21px;
 }
 
-/*----------------------------*/
+/*--------------------------------*/
 
 /*--------------Filter------------*/
 .filters {
@@ -157,7 +162,7 @@ main {
   height: 100%;
   text-align: left;
 }
-/*-----------*/
+/*--------------------------------*/
 
 /*------------Cart----------------*/
 
@@ -173,7 +178,7 @@ main {
   position: absolute;
 
   left: 34px;
-  top: -25px;
+  top: -10px;
   width: 24px;
   height: 24px;
   border-radius: 100%;
@@ -264,7 +269,7 @@ main {
   line-height: 23px;
 }
 
-/*-------------------*/
+/*--------------------------------*/
 
 /*Payent Form*/
 
@@ -313,16 +318,10 @@ fieldset {
   margin: 15px 29px;
 }
 
-/* .fullName {
-  align-self: stretch;
-  flex-grow: 1;
-  width: 300px;
-} */
-
 .payment-products {
   width: 100%;
 }
-/*-------------------*/
+/*--------------------------------*/
 
 /*Product detail*/
 
@@ -338,23 +337,53 @@ fieldset {
   flex-direction: column;
 }
 
-.product-info {
+.product-detail_info {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-around;
   width: 100%;
+  text-align: left;
 }
 
-.product-info img {
+.product-detail_image {
   width: 250px;
   height: 334.27px;
 }
 
-.product-info div {
+.product-detail_elements {
   width: 380px;
-  text-align: left;
+}
+
+.product-detail_name {
+  font-size: 36px;
+  line-height: 42px;
+  margin: 5px 0;
+}
+
+.product-detail_price {
+  display: flex;
+  align-items: center;
+  font-size: 36px;
+  line-height: 42px;
+  margin: 10px 0;
+}
+
+.basics-detail {
+  font-size: 14px;
+  line-height: 16px;
+  width: 59px;
+  height: 15px;
+  color: #fff;
+  text-align: center;
+  background: #11d000;
+  margin-left: 18px;
+  padding: 7px 20px;
+}
+
+.product-detail_p {
+  margin: 10px 0;
 }
 
 .comments-border {
@@ -372,4 +401,24 @@ fieldset {
 p {
   margin: 6px;
   padding: 0;
+}
+
+/*--------------------------------*/
+
+/* Comments in product */
+
+.stars-and-globe {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.comments-img {
+  width: 15px;
+  height: 15px;
+}
+
+.star {
+  width: 20px;
+  height: 20px;
 }

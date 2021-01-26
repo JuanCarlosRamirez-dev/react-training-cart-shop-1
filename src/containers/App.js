@@ -16,6 +16,7 @@ class App extends Component {
       <Provider store={store}>
 
         <div className="grid-container">
+
           <header>
             <img src={logo} alt="Globant shops" />
             <CartContainer />
